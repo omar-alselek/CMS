@@ -1,0 +1,74 @@
+<div class="d-flex flex-column p-3 text-white"
+     style="width:240px; min-height:100vh; background:#1a1f36;">
+
+  <div class="text-center py-3 mb-3 border-bottom border-secondary">
+    <div style="font-size:2rem;">🏥</div>
+    <div class="fw-bold mt-1">CMS</div>
+    <div class="small text-secondary">Clinic Management</div>
+  </div>
+
+  <nav class="nav flex-column gap-1">
+
+    <!-- ClinicManager فقط -->
+    <a *ngIf="role === 'ClinicManager'"
+       class="nav-link rounded px-3 py-2"
+       [class.text-white]="isActive('dashboard')"
+       [class.text-secondary]="!isActive('dashboard')"
+       [style.background]="isActive('dashboard') ? 'rgba(255,255,255,0.1)' : ''"
+       style="cursor:pointer" (click)="goTo('dashboard')">
+      📊 Dashboard
+    </a>
+
+    <!-- ClinicManager فقط -->
+    <a *ngIf="role === 'ClinicManager'"
+       class="nav-link rounded px-3 py-2"
+       [class.text-white]="isActive('doctors')"
+       [class.text-secondary]="!isActive('doctors')"
+       [style.background]="isActive('doctors') ? 'rgba(255,255,255,0.1)' : ''"
+       style="cursor:pointer" (click)="goTo('doctors')">
+      🩺 Doctors
+    </a>
+
+    <!-- ClinicManager + Receptionist -->
+    <a *ngIf="role === 'ClinicManager' || role === 'Receptionist'"
+       class="nav-link rounded px-3 py-2"
+       [class.text-white]="isActive('patients')"
+       [class.text-secondary]="!isActive('patients')"
+       [style.background]="isActive('patients') ? 'rgba(255,255,255,0.1)' : ''"
+       style="cursor:pointer" (click)="goTo('patients')">
+      👥 Patients
+    </a>
+
+    <!-- Receptionist + Doctor -->
+    <a *ngIf="role === 'Receptionist' || role === 'Doctor'"
+       class="nav-link rounded px-3 py-2"
+       [class.text-white]="isActive('appointments')"
+       [class.text-secondary]="!isActive('appointments')"
+       [style.background]="isActive('appointments') ? 'rgba(255,255,255,0.1)' : ''"
+       style="cursor:pointer" (click)="goTo('appointments')">
+      📅 Appointments
+    </a>
+
+    <!-- Doctor فقط -->
+  <!--  <a *ngIf="role === 'Doctor'"
+       class="nav-link rounded px-3 py-2"
+       [class.text-white]="isActive('prescriptions')"
+       [class.text-secondary]="!isActive('prescriptions')"
+       [style.background]="isActive('prescriptions') ? 'rgba(255,255,255,0.1)' : ''"
+       style="cursor:pointer" (click)="goTo('prescriptions')">
+      💊 Prescriptions
+    </a> -->
+
+  </nav>
+
+  <div class="mt-auto border-top border-secondary pt-3">
+    <div class="small text-secondary mb-1">Logged in as</div>
+    <div class="fw-bold small mb-1">{{ fullName }}</div>
+    <div class="small text-secondary mb-2">{{ role }}</div>
+    <button class="btn btn-sm btn-outline-secondary w-100"
+            (click)="logout()">
+      Sign Out
+    </button>
+  </div>
+
+</div>

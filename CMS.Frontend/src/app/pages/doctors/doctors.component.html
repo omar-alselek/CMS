@@ -1,0 +1,183 @@
+<div class="min-vh-100" style="background:#f0f2f5;">
+  <div class="d-flex">
+
+    <!-- Sidebar -->
+     <app-sidebar> </app-sidebar>
+    
+
+    <!-- Main Content -->
+    <div class="flex-grow-1 p-4">
+
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h4 class="fw-bold mb-0">Doctors</h4>
+          <div class="text-muted small">Manage clinic doctors</div>
+        </div>
+        <button class="btn btn-primary px-4" (click)="openAddForm()">
+          + Add Doctor
+        </button>
+      </div>
+
+      <!-- Success Message -->
+      <div *ngIf="successMessage" class="alert alert-success alert-dismissible">
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="successMessage=''"></button>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible">
+        {{ errorMessage }}
+        <button type="button" class="btn-close" (click)="errorMessage=''"></button>
+      </div>
+      <!-- Search Bar -->
+      <div class="card border-0 shadow-sm rounded-3 mb-4 p-3">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="searchQuery"
+                 placeholder="Search by name or specialization..."
+                 (keyup.enter)="search()" (input)="search()" />
+          <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Clear</button>
+        </div>
+      </div>
+
+      <!-- Add/Edit Form -->
+      <div *ngIf="showForm" class="card border-0 shadow-sm rounded-3 mb-4">
+        <div class="card-body p-4">
+          <h6 class="fw-bold mb-3">
+            {{ isEditing ? 'Edit Doctor' : 'Register New Doctor' }}
+          </h6>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label small fw-semibold">Full Name</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="form.fullName"
+                     placeholder="Dr. John Smith" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-semibold">Email</label>
+              <input type="email" class="form-control"
+                     [(ngModel)]="form.email"
+                     placeholder="doctor@clinic.com" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-semibold">Phone</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="form.phone"
+                     placeholder="0991234567" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-semibold">Specialization</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="form.specialization"
+                     placeholder="Cardiology" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-semibold">License Number</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="form.licenseNumber"
+                     placeholder="LIC-12345" />
+            </div>
+            <div class="col-md-6" *ngIf="!isEditing">
+              <label class="form-label small fw-semibold">Temporary Password</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="temporaryPassword" />
+            </div>
+          </div>
+          <div class="mt-3 d-flex gap-2">
+            <button class="btn btn-primary px-4" (click)="save()">
+              {{ isEditing ? 'Update' : 'Register' }}
+            </button>
+            <button class="btn btn-outline-secondary px-4"
+                    (click)="showForm=false">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Availability Form -->
+<div *ngIf="showAvailability" class="card border-0 shadow-sm rounded-3 mb-4">
+  <div class="card-body p-4">
+    <h6 class="fw-bold mb-1">Schedule — {{ selectedDoctor?.fullName }}</h6>
+    <div class="text-muted small mb-3">Set working days and hours</div>
+
+    <table class="table table-bordered">
+      <thead style="background:#f8f9fa;">
+        <tr>
+          <th class="small text-muted">Day</th>
+          <th class="small text-muted">Start Time</th>
+          <th class="small text-muted">End Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let avail of availabilities">
+          <td class="fw-semibold">{{ days[avail.dayOfWeek] }}</td>
+          <td>
+            <input type="time" class="form-control form-control-sm"
+                  [ngModel]="avail.startTime.substring(0,5)"
+                   (ngModelChange)="avail.startTime = $event" />
+          </td>
+          <td>
+            <input type="time" class="form-control form-control-sm"
+                   [ngModel]="avail.endTime.substring(0,5)"
+                   (ngModelChange)="avail.endTime = $event" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex gap-2 mt-2">
+      <button class="btn btn-success px-4" (click)="saveAvailability()">
+        Save Schedule
+      </button>
+      <button class="btn btn-outline-secondary px-4"
+              (click)="showAvailability=false">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+      <!-- Doctors Table -->
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead style="background:#f8f9fa;">
+              <tr>
+                <th class="px-4 py-3 text-muted small fw-semibold">#</th>
+                <th class="px-4 py-3 text-muted small fw-semibold">Name</th>
+                <th class="px-4 py-3 text-muted small fw-semibold">Specialization</th>
+                <th class="px-4 py-3 text-muted small fw-semibold">Email</th>
+                <th class="px-4 py-3 text-muted small fw-semibold">Phone</th>
+                <th class="px-4 py-3 text-muted small fw-semibold">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of filteredDoctors; let i = index">
+                <td class="px-4 py-3 text-muted">{{ i + 1 }}</td>
+                <td class="px-4 py-3 fw-semibold">{{ d.fullName }}</td>
+                <td class="px-4 py-3">
+                  <span class="badge rounded-pill" style="background:#e8f4fd; color:#0066cc;">
+                    {{ d.specialization }}
+                  </span>
+                </td>
+                <td class="px-4 py-3 text-muted">{{ d.email }}</td>
+                <td class="px-4 py-3 text-muted">{{ d.phone }}</td>
+                <td class="px-4 py-3">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditForm(d)">Edit</button>
+                  <button class="btn btn-sm btn-outline-success me-2" (click)="openAvailability(d)">Schedule</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="delete(d.id)">Delete</button>
+                </td>
+              </tr>
+              <tr *ngIf="filteredDoctors.length === 0">
+                <td colspan="6" class="text-center text-muted py-5">
+                  No doctors found.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
