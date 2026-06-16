@@ -1,0 +1,11 @@
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\bin\Debug\net8.0\CMS.Models.deps.json
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\bin\Debug\net8.0\CMS.Models.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\bin\Debug\net8.0\CMS.Models.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\CMS.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\CMS.Models.AssemblyInfoInputs.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\CMS.Models.AssemblyInfo.cs
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\CMS.Models.csproj.CoreCompileInputs.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\CMS.Models.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\refint\CMS.Models.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\CMS.Models.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.Models\obj\Debug\net8.0\ref\CMS.Models.dll

@@ -1,0 +1,328 @@
+{
+  "info": {
+    "name": "CMS - Run 2 (Sara & Dr. Nour)",
+    "description": "Second test run with completely different data.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://localhost:7250", "type": "string" },
+    { "key": "token", "value": "", "type": "string" },
+    { "key": "patientId", "value": "", "type": "string" },
+    { "key": "doctorId", "value": "", "type": "string" },
+    { "key": "appointmentId", "value": "", "type": "string" },
+    { "key": "rxAppointmentId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "01 - Login",
+      "item": [
+        {
+          "name": "Login as Manager",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "const json = pm.response.json();",
+            "pm.collectionVariables.set('token', json.token);",
+            "console.log('Token saved');"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"username\": \"omar.admin\",\n  \"password\": \"Admin@123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api","auth","login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Patients",
+      "item": [
+        {
+          "name": "UC-01 — Register Sara Hassan",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "const json = pm.response.json();",
+            "pm.collectionVariables.set('patientId', json.id);",
+            "console.log('Patient ID:', json.id);"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"fullName\": \"Sara Hassan\",\n  \"phone\": \"0911223344\",\n  \"email\": \"sara.hassan@email.com\",\n  \"dateOfBirth\": \"1995-08-20T00:00:00\",\n  \"bloodType\": \"B+\",\n  \"address\": \"Aleppo, Syria\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/patients", "host": ["{{baseUrl}}"], "path": ["api","patients"] }
+          }
+        },
+        {
+          "name": "UC-02 — Update Sara",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"fullName\": \"Sara Hassan Ali\",\n  \"phone\": \"0911223355\",\n  \"email\": \"sara.updated@email.com\",\n  \"dateOfBirth\": \"1995-08-20T00:00:00\",\n  \"bloodType\": \"B+\",\n  \"address\": \"Aleppo - New District\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/patients/{{patientId}}", "host": ["{{baseUrl}}"], "path": ["api","patients","{{patientId}}"] }
+          }
+        },
+        {
+          "name": "UC-03 — Search by Name",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Array returned', () => pm.expect(pm.response.json()).to.be.an('array'));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/patients/search?q=Sara", "host": ["{{baseUrl}}"], "path": ["api","patients","search"], "query": [{ "key": "q", "value": "Sara" }] }
+          }
+        },
+        {
+          "name": "UC-04 — View History",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Has appointments', () => pm.expect(pm.response.json()).to.have.property('appointments'));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/patients/{{patientId}}/history", "host": ["{{baseUrl}}"], "path": ["api","patients","{{patientId}}","history"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Doctors",
+      "item": [
+        {
+          "name": "UC-05 — Register Dr. Nour",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "const json = pm.response.json();",
+            "pm.collectionVariables.set('doctorId', json.id);",
+            "console.log('Doctor ID:', json.id);"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"doctor\": {\n    \"fullName\": \"Dr. Nour Al-Sabbagh\",\n    \"phone\": \"0933445566\",\n    \"email\": \"nour.sabbagh@clinic.com\",\n    \"specialization\": \"Neurology\",\n    \"licenseNumber\": \"LIC-2024-NEU-001\"\n  },\n  \"temporaryPassword\": \"Doctor@123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/doctors", "host": ["{{baseUrl}}"], "path": ["api","doctors"] }
+          }
+        },
+        {
+          "name": "UC-06 — Update Dr. Nour",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"fullName\": \"Dr. Nour Al-Sabbagh\",\n  \"phone\": \"0933445577\",\n  \"email\": \"nour.sabbagh@clinic.com\",\n  \"specialization\": \"Clinical Neurology\",\n  \"licenseNumber\": \"LIC-2024-NEU-001\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/doctors/{{doctorId}}", "host": ["{{baseUrl}}"], "path": ["api","doctors","{{doctorId}}"] }
+          }
+        },
+        {
+          "name": "UC-08 — Set Availability (Sun-Thu)",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "[\n  { \"dayOfWeek\": 0, \"startTime\": \"09:00:00\", \"endTime\": \"17:00:00\" },\n  { \"dayOfWeek\": 1, \"startTime\": \"09:00:00\", \"endTime\": \"17:00:00\" },\n  { \"dayOfWeek\": 2, \"startTime\": \"10:00:00\", \"endTime\": \"18:00:00\" },\n  { \"dayOfWeek\": 3, \"startTime\": \"09:00:00\", \"endTime\": \"15:00:00\" },\n  { \"dayOfWeek\": 4, \"startTime\": \"09:00:00\", \"endTime\": \"13:00:00\" }\n]" },
+            "url": { "raw": "{{baseUrl}}/api/doctors/{{doctorId}}/availability", "host": ["{{baseUrl}}"], "path": ["api","doctors","{{doctorId}}","availability"] }
+          }
+        },
+        {
+          "name": "UC-12 — View Schedule",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/doctors/{{doctorId}}/schedule?date=2026-06-15", "host": ["{{baseUrl}}"], "path": ["api","doctors","{{doctorId}}","schedule"], "query": [{ "key": "date", "value": "2026-06-15" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Appointments",
+      "item": [
+        {
+          "name": "UC-09 — Book Appointment 1",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "const json = pm.response.json();",
+            "pm.collectionVariables.set('appointmentId', json.id);",
+            "console.log('Appointment ID:', json.id);"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 2,\n  \"appointmentDate\": \"2026-06-15T00:00:00\",\n  \"startTime\": \"10:00:00\",\n  \"endTime\": \"10:30:00\",\n  \"notes\": \"First neurology consultation\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/appointments", "host": ["{{baseUrl}}"], "path": ["api","appointments"] }
+          }
+        },
+        {
+          "name": "UC-10 — Confirm Appointment",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Confirmed', () => pm.expect(pm.response.json().status).to.equal('Confirmed'));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/confirm", "host": ["{{baseUrl}}"], "path": ["api","appointments","{{appointmentId}}","confirm"] }
+          }
+        },
+        {
+          "name": "UC-13 — Reschedule Appointment",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Rescheduled', () => pm.expect(pm.response.json().status).to.equal('Rescheduled'));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"newDate\": \"2026-06-22T00:00:00\",\n  \"newStart\": \"11:00:00\",\n  \"newEnd\": \"11:30:00\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/reschedule", "host": ["{{baseUrl}}"], "path": ["api","appointments","{{appointmentId}}","reschedule"] }
+          }
+        },
+        {
+          "name": "UC-09 — Book Appointment 2 (for Prescription)",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "const json = pm.response.json();",
+            "pm.collectionVariables.set('rxAppointmentId', json.id);",
+            "console.log('RX Appointment ID:', json.id);"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 2,\n  \"appointmentDate\": \"2026-06-15T00:00:00\",\n  \"startTime\": \"12:00:00\",\n  \"endTime\": \"12:30:00\",\n  \"notes\": \"Follow-up for prescription\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/appointments", "host": ["{{baseUrl}}"], "path": ["api","appointments"] }
+          }
+        },
+        {
+          "name": "Confirm Appointment 2",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/appointments/{{rxAppointmentId}}/confirm", "host": ["{{baseUrl}}"], "path": ["api","appointments","{{rxAppointmentId}}","confirm"] }
+          }
+        },
+        {
+          "name": "UC-11 — Cancel Appointment 1",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Cancelled', () => pm.expect(pm.response.json().status).to.equal('Cancelled'));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/cancel", "host": ["{{baseUrl}}"], "path": ["api","appointments","{{appointmentId}}","cancel"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Prescriptions",
+      "item": [
+        {
+          "name": "UC-14 — Create Prescription",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Prescription created', () => pm.expect(pm.response.json().id).to.be.above(0));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"appointmentId\": {{rxAppointmentId}},\n  \"medication\": \"Ibuprofen 400mg — twice daily for 5 days\",\n  \"notes\": \"Take with food. Avoid on empty stomach.\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/prescriptions", "host": ["{{baseUrl}}"], "path": ["api","prescriptions"] }
+          }
+        },
+        {
+          "name": "UC-15 — View Prescription",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Has medication', () => pm.expect(pm.response.json().medication).to.include('Ibuprofen'));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/prescriptions/appointment/{{rxAppointmentId}}", "host": ["{{baseUrl}}"], "path": ["api","prescriptions","appointment","{{rxAppointmentId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Reports",
+      "item": [
+        {
+          "name": "UC-17 — Dashboard",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Has KPIs', () => {",
+            "    const j = pm.response.json();",
+            "    pm.expect(j).to.have.property('totalPatients');",
+            "    pm.expect(j).to.have.property('totalDoctors');",
+            "});"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/reports/dashboard", "host": ["{{baseUrl}}"], "path": ["api","reports","dashboard"] }
+          }
+        },
+        {
+          "name": "UC-18 — Patient Report",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/reports/patients?from=2026-01-01&to=2026-12-31", "host": ["{{baseUrl}}"], "path": ["api","reports","patients"], "query": [{ "key": "from", "value": "2026-01-01" }, { "key": "to", "value": "2026-12-31" }] }
+          }
+        },
+        {
+          "name": "UC-19 — Appointment Report",
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));"
+          ], "type": "text/javascript" } }],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/api/reports/appointments?from=2026-01-01&to=2026-12-31", "host": ["{{baseUrl}}"], "path": ["api","reports","appointments"], "query": [{ "key": "from", "value": "2026-01-01" }, { "key": "to", "value": "2026-12-31" }] }
+          }
+        }
+      ]
+    }
+  ]
+}

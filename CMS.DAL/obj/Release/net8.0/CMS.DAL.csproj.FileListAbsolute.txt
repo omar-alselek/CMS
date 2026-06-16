@@ -1,0 +1,17 @@
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\bin\Release\net8.0\CMS.DAL.deps.json
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\bin\Release\net8.0\CMS.DAL.runtimeconfig.json
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\bin\Release\net8.0\CMS.DAL.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\bin\Release\net8.0\CMS.DAL.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\bin\Release\net8.0\CMS.Models.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\bin\Release\net8.0\CMS.Models.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.csproj.AssemblyReference.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.AssemblyInfoInputs.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.AssemblyInfo.cs
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.csproj.CoreCompileInputs.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.csproj.Up2Date
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\refint\CMS.DAL.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\CMS.DAL.genruntimeconfig.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.DAL\obj\Release\net8.0\ref\CMS.DAL.dll

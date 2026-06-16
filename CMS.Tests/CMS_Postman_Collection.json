@@ -1,0 +1,1788 @@
+{
+  "info": {
+    "name": "CMS - Clinic Management System",
+    "description": "Complete API collection for the Clinic Management System.\n\n**Setup:**\n1. Set `baseUrl` variable to your API URL (default: https://localhost:7250)\n2. Run **Login** request first to auto-set the Bearer token\n3. All subsequent requests will use the token automatically\n\n**Test Order:**\nAuth → Patients → Doctors → Appointments → Prescriptions → Reports",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:7250",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "patientId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "doctorId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "appointmentId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "prescriptionId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - Auth",
+      "description": "UC-21 / UC-22 — Authentication endpoints",
+      "item": [
+        {
+          "name": "Login - Manager (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Response has token', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.token).to.be.a('string').and.not.empty;",
+                  "    pm.expect(json.role).to.equal('ClinicManager');",
+                  "    pm.expect(json.fullName).to.be.a('string');",
+                  "    pm.collectionVariables.set('token', json.token);",
+                  "    console.log('Token saved:', json.token.substring(0, 30) + '...');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"omar.admin\",\n  \"password\": \"Admin@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "UC-22 Main Flow — Login as Clinic Manager. Token is auto-saved to collection variable."
+          }
+        },
+        {
+          "name": "Login - Wrong Password (ALT-2)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 Unauthorized', () => pm.response.to.have.status(401));",
+                  "pm.test('Error message returned', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('Invalid');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"omar.admin\",\n  \"password\": \"WrongPassword\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "UC-21 ALT-2 — Wrong password should return 401."
+          }
+        },
+        {
+          "name": "Login - User Not Found (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 Unauthorized', () => pm.response.to.have.status(401));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"nonexistent.user\",\n  \"password\": \"Admin@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "UC-21 ALT-1 — Username does not exist."
+          }
+        },
+        {
+          "name": "Login - Empty Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 400 or 401', () => {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 401]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"\",\n  \"password\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Edge case — Empty credentials."
+          }
+        },
+        {
+          "name": "Login - No Token (Access Protected Endpoint)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 - No Token', () => pm.response.to.have.status(401));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/search?q=test",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "search"],
+              "query": [{ "key": "q", "value": "test" }]
+            },
+            "description": "Security test — accessing protected endpoint without token should return 401."
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Patients",
+      "description": "UC-01 to UC-04 — Patient management",
+      "item": [
+        {
+          "name": "UC-01 — Register Patient (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Patient created with ID', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.id).to.be.above(0);",
+                  "    pm.expect(json.fullName).to.equal('Ahmad Al-Rashid');",
+                  "    pm.collectionVariables.set('patientId', json.id);",
+                  "    console.log('Patient ID saved:', json.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Ahmad Al-Rashid\",\n  \"phone\": \"0991112233\",\n  \"email\": \"ahmad@example.com\",\n  \"dateOfBirth\": \"1990-05-15T00:00:00\",\n  \"bloodType\": \"A+\",\n  \"address\": \"Damascus, Syria\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            },
+            "description": "UC-01 Main Flow — Register a new patient with all required fields."
+          }
+        },
+        {
+          "name": "UC-01 — Duplicate Phone (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Duplicate Phone', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions phone', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('Phone');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Another Person\",\n  \"phone\": \"0991112233\",\n  \"email\": \"another@example.com\",\n  \"dateOfBirth\": \"1985-01-01T00:00:00\",\n  \"bloodType\": \"B+\",\n  \"address\": \"Aleppo, Syria\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            },
+            "description": "UC-01 ALT-1 — Duplicate phone number should be rejected."
+          }
+        },
+        {
+          "name": "UC-01 — Missing Full Name (ALT-3)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Validation Error', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions name', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('name');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"\",\n  \"phone\": \"0997778899\",\n  \"email\": \"test@example.com\",\n  \"dateOfBirth\": \"1990-01-01T00:00:00\",\n  \"bloodType\": \"O+\",\n  \"address\": \"Test Address\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            },
+            "description": "UC-01 ALT-3 — Missing required field (fullName)."
+          }
+        },
+        {
+          "name": "UC-01 — Future Birth Date",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Invalid Date', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions birth date', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('birth');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Future Person\",\n  \"phone\": \"0992345678\",\n  \"email\": \"future@example.com\",\n  \"dateOfBirth\": \"2099-01-01T00:00:00\",\n  \"bloodType\": \"A-\",\n  \"address\": \"Future City\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            },
+            "description": "Edge case — Date of birth in the future should be rejected."
+          }
+        },
+        {
+          "name": "UC-02 — Update Patient (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Patient updated', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.phone).to.equal('0991119999');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Ahmad Al-Rashid Updated\",\n  \"phone\": \"0991119999\",\n  \"email\": \"ahmad.updated@example.com\",\n  \"dateOfBirth\": \"1990-05-15T00:00:00\",\n  \"bloodType\": \"A+\",\n  \"address\": \"Damascus - New Address\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/{{patientId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "{{patientId}}"]
+            },
+            "description": "UC-02 Main Flow — Update patient information."
+          }
+        },
+        {
+          "name": "UC-02 — Update Non-Existent Patient (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Not Found', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions not found', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('not found');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Nobody\",\n  \"phone\": \"0990000000\",\n  \"email\": \"nobody@example.com\",\n  \"dateOfBirth\": \"1990-01-01T00:00:00\",\n  \"bloodType\": \"O-\",\n  \"address\": \"Nowhere\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "99999"]
+            },
+            "description": "UC-02 ALT-1 — Updating patient with invalid ID."
+          }
+        },
+        {
+          "name": "UC-03 — Search Patient by Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns array', () => {",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/search?q=Ahmad",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "search"],
+              "query": [{ "key": "q", "value": "Ahmad" }]
+            },
+            "description": "UC-03 Main Flow — Search patient by name."
+          }
+        },
+        {
+          "name": "UC-03 — Search Patient by Phone",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns array', () => {",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/search?q=0991119999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "search"],
+              "query": [{ "key": "q", "value": "0991119999" }]
+            },
+            "description": "UC-03 ALT search — Search patient by phone number."
+          }
+        },
+        {
+          "name": "UC-03 — Search No Results (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK - Empty Array', () => pm.response.to.have.status(200));",
+                  "pm.test('Empty result set', () => {",
+                  "    pm.expect(pm.response.json()).to.be.an('array').that.is.empty;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/search?q=XYZNONEXISTENT999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "search"],
+              "query": [{ "key": "q", "value": "XYZNONEXISTENT999" }]
+            },
+            "description": "UC-03 ALT-1 — No results found."
+          }
+        },
+        {
+          "name": "UC-04 — View Patient History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Has appointments and prescriptions arrays', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.property('appointments');",
+                  "    pm.expect(json).to.have.property('prescriptions');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/{{patientId}}/history",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "{{patientId}}", "history"]
+            },
+            "description": "UC-04 Main Flow — View complete patient medical history."
+          }
+        },
+        {
+          "name": "UC-04 — History - Patient Not Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Not Found', () => pm.response.to.have.status(500));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/99999/history",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "99999", "history"]
+            },
+            "description": "UC-04 — Non-existent patient history."
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Doctors",
+      "description": "UC-05 to UC-08 — Doctor management",
+      "item": [
+        {
+          "name": "UC-05 — Register Doctor (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Doctor created with ID', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.id).to.be.above(0);",
+                  "    pm.expect(json.licenseNumber).to.equal('LIC-2024-001');",
+                  "    pm.collectionVariables.set('doctorId', json.id);",
+                  "    console.log('Doctor ID saved:', json.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctor\": {\n    \"fullName\": \"Dr. Khalid Al-Masri\",\n    \"phone\": \"0992233445\",\n    \"email\": \"khalid.masri@clinic.com\",\n    \"specialization\": \"Cardiology\",\n    \"licenseNumber\": \"LIC-2024-001\"\n  },\n  \"temporaryPassword\": \"Doctor@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors"]
+            },
+            "description": "UC-05 Main Flow — Register a new doctor. Creates UserAccount automatically."
+          }
+        },
+        {
+          "name": "UC-05 — Duplicate Email (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Duplicate Email', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions email', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('Email');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctor\": {\n    \"fullName\": \"Dr. Clone\",\n    \"phone\": \"0999988877\",\n    \"email\": \"khalid.masri@clinic.com\",\n    \"specialization\": \"Neurology\",\n    \"licenseNumber\": \"LIC-2024-999\"\n  },\n  \"temporaryPassword\": \"Doctor@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors"]
+            },
+            "description": "UC-05 ALT-1 — Duplicate email should be rejected."
+          }
+        },
+        {
+          "name": "UC-05 — Duplicate License Number (ALT-2)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Duplicate License', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions license', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('License');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctor\": {\n    \"fullName\": \"Dr. Another\",\n    \"phone\": \"0993344556\",\n    \"email\": \"another.doctor@clinic.com\",\n    \"specialization\": \"Pediatrics\",\n    \"licenseNumber\": \"LIC-2024-001\"\n  },\n  \"temporaryPassword\": \"Doctor@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors"]
+            },
+            "description": "UC-05 ALT-2 — Duplicate license number should be rejected."
+          }
+        },
+        {
+          "name": "UC-05 — Missing Required Fields",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Missing Fields', () => pm.response.to.have.status(500));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctor\": {\n    \"fullName\": \"\",\n    \"phone\": \"0993344000\",\n    \"email\": \"\",\n    \"specialization\": \"Dermatology\",\n    \"licenseNumber\": \"\"\n  },\n  \"temporaryPassword\": \"Doctor@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors"]
+            },
+            "description": "UC-05 — Missing required fields validation."
+          }
+        },
+        {
+          "name": "UC-06 — Update Doctor (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Doctor updated', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.specialization).to.equal('Interventional Cardiology');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Dr. Khalid Al-Masri\",\n  \"phone\": \"0992233446\",\n  \"email\": \"khalid.masri@clinic.com\",\n  \"specialization\": \"Interventional Cardiology\",\n  \"licenseNumber\": \"LIC-2024-001\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/{{doctorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "{{doctorId}}"]
+            },
+            "description": "UC-06 Main Flow — Update doctor profile."
+          }
+        },
+        {
+          "name": "UC-06 — Update Non-Existent Doctor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Not Found', () => pm.response.to.have.status(500));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Ghost Doctor\",\n  \"phone\": \"0990000001\",\n  \"email\": \"ghost@clinic.com\",\n  \"specialization\": \"Unknown\",\n  \"licenseNumber\": \"LIC-GHOST\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "99999"]
+            },
+            "description": "UC-06 — Doctor not found."
+          }
+        },
+        {
+          "name": "UC-08 — Set Doctor Availability (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Success message', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('Schedule updated');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"dayOfWeek\": 0,\n    \"startTime\": \"08:00:00\",\n    \"endTime\": \"16:00:00\"\n  },\n  {\n    \"dayOfWeek\": 1,\n    \"startTime\": \"08:00:00\",\n    \"endTime\": \"16:00:00\"\n  },\n  {\n    \"dayOfWeek\": 2,\n    \"startTime\": \"09:00:00\",\n    \"endTime\": \"17:00:00\"\n  },\n  {\n    \"dayOfWeek\": 3,\n    \"startTime\": \"08:00:00\",\n    \"endTime\": \"14:00:00\"\n  },\n  {\n    \"dayOfWeek\": 4,\n    \"startTime\": \"10:00:00\",\n    \"endTime\": \"18:00:00\"\n  }\n]"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/{{doctorId}}/availability",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "{{doctorId}}", "availability"]
+            },
+            "description": "UC-08 Main Flow — Set doctor working days/hours (Sun-Thu). DayOfWeek: 0=Sunday, 1=Monday ... 6=Saturday"
+          }
+        },
+        {
+          "name": "UC-08 — Invalid Time Range (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Invalid Time', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions time', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('time');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"dayOfWeek\": 1,\n    \"startTime\": \"17:00:00\",\n    \"endTime\": \"08:00:00\"\n  }\n]"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/{{doctorId}}/availability",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "{{doctorId}}", "availability"]
+            },
+            "description": "UC-08 ALT-1 — End time before start time should be rejected."
+          }
+        },
+        {
+          "name": "UC-12 — View Doctor Schedule",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns array of appointments', () => {",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/{{doctorId}}/schedule?date=2025-06-15",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "{{doctorId}}", "schedule"],
+              "query": [{ "key": "date", "value": "2025-06-15" }]
+            },
+            "description": "UC-12 Main Flow — View doctor's appointments for a specific date."
+          }
+        },
+        {
+          "name": "UC-07 — Delete Doctor (With Active Appointments - ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Has Active Appointments', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions active appointments', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('active');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/{{doctorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "{{doctorId}}"]
+            },
+            "description": "UC-07 ALT-1 — Run this AFTER booking appointments. Should fail with active appointments error."
+          }
+        },
+        {
+          "name": "UC-07 — Delete Doctor (Success - No Appointments)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Success message', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('deleted');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/{{doctorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "{{doctorId}}"]
+            },
+            "description": "UC-07 Main Flow — Run this ONLY after all appointments are cancelled/completed. Removes doctor and UserAccount."
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Appointments",
+      "description": "UC-09 to UC-13 — Appointment management",
+      "item": [
+        {
+          "name": "UC-09 — Book Appointment (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Appointment booked', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.id).to.be.above(0);",
+                  "    pm.expect(json.status).to.equal('Scheduled');",
+                  "    pm.collectionVariables.set('appointmentId', json.id);",
+                  "    console.log('Appointment ID saved:', json.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 1,\n  \"appointmentDate\": \"2025-06-16T00:00:00\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"09:30:00\",\n  \"notes\": \"Regular checkup\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            },
+            "description": "UC-09 Main Flow — Book a new appointment. Date must be a Monday (DayOfWeek=1) based on availability set."
+          }
+        },
+        {
+          "name": "UC-09 — Double Booking Same Slot (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Slot Not Available', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions time slot', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('not available');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 1,\n  \"appointmentDate\": \"2025-06-16T00:00:00\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"09:30:00\",\n  \"notes\": \"Duplicate attempt\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            },
+            "description": "UC-09 ALT-1 — Same doctor/date/time slot (FR-14 conflict check)."
+          }
+        },
+        {
+          "name": "UC-09 — Past Date",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Past Date', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions past', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('past');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 1,\n  \"appointmentDate\": \"2020-01-01T00:00:00\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"09:30:00\",\n  \"notes\": \"Past appointment\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            },
+            "description": "Business Rule — Cannot book in the past."
+          }
+        },
+        {
+          "name": "UC-09 — Doctor Not Available That Day",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Not Available', () => pm.response.to.have.status(500));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 1,\n  \"appointmentDate\": \"2025-06-21T00:00:00\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"09:30:00\",\n  \"notes\": \"Saturday - not working\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            },
+            "description": "UC-09 — Saturday. Doctor has no availability on day 6."
+          }
+        },
+        {
+          "name": "UC-09 — Wrong Duration (Not 30 min)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Invalid Duration', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions duration', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('duration');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 1,\n  \"appointmentDate\": \"2025-06-16T00:00:00\",\n  \"startTime\": \"10:00:00\",\n  \"endTime\": \"10:45:00\",\n  \"notes\": \"45 min - invalid\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            },
+            "description": "Business Rule — Duration must be exactly 30 minutes."
+          }
+        },
+        {
+          "name": "UC-10 — Confirm Appointment (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Status changed to Confirmed', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.status).to.equal('Confirmed');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/confirm",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{appointmentId}}", "confirm"]
+            },
+            "description": "UC-10 Main Flow — Confirm a Scheduled appointment."
+          }
+        },
+        {
+          "name": "UC-10 — Confirm Already Confirmed (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Already Confirmed', () => pm.response.to.have.status(500));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/confirm",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{appointmentId}}", "confirm"]
+            },
+            "description": "UC-10 ALT-1 — Confirming an already confirmed appointment should fail."
+          }
+        },
+        {
+          "name": "Book 2nd Appointment (for reschedule test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Second appointment booked', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.id).to.be.above(0);",
+                  "    pm.collectionVariables.set('appointmentId2', json.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 1,\n  \"appointmentDate\": \"2025-06-16T00:00:00\",\n  \"startTime\": \"10:00:00\",\n  \"endTime\": \"10:30:00\",\n  \"notes\": \"Second appointment for testing\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            },
+            "description": "Helper — Book a second appointment to use in reschedule tests."
+          }
+        },
+        {
+          "name": "UC-13 — Reschedule Appointment (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Status changed to Rescheduled', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.status).to.equal('Rescheduled');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newDate\": \"2025-06-23T00:00:00\",\n  \"newStart\": \"11:00:00\",\n  \"newEnd\": \"11:30:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/reschedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{appointmentId}}", "reschedule"]
+            },
+            "description": "UC-13 Main Flow — Reschedule confirmed appointment to a new date/time."
+          }
+        },
+        {
+          "name": "UC-13 — Reschedule to Past Date (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Past Date', () => pm.response.to.have.status(500));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newDate\": \"2020-01-01T00:00:00\",\n  \"newStart\": \"09:00:00\",\n  \"newEnd\": \"09:30:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/reschedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{appointmentId}}", "reschedule"]
+            },
+            "description": "UC-13 ALT-1 — Reschedule to past date should fail."
+          }
+        },
+        {
+          "name": "UC-11 — Cancel Appointment (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Status changed to Cancelled', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.status).to.equal('Cancelled');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/cancel",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{appointmentId}}", "cancel"]
+            },
+            "description": "UC-11 Main Flow — Cancel a Rescheduled/Scheduled/Confirmed appointment."
+          }
+        },
+        {
+          "name": "UC-11 — Cancel Already Cancelled (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Already Cancelled', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions already cancelled', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('already cancelled');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/cancel",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{appointmentId}}", "cancel"]
+            },
+            "description": "UC-11 ALT — Cancelling an already cancelled appointment should fail."
+          }
+        },
+        {
+          "name": "Complete Appointment (for Prescription test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Can only complete Confirmed', () => {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 500]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{appointmentId}}/complete",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{appointmentId}}", "complete"]
+            },
+            "description": "Helper — Mark appointment as Completed (only Confirmed → Completed)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Prescriptions",
+      "description": "UC-14 / UC-15 — Prescription management",
+      "item": [
+        {
+          "name": "Setup — Book & Confirm Fresh Appointment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200) {",
+                  "    const json = pm.response.json();",
+                  "    pm.collectionVariables.set('rxAppointmentId', json.id);",
+                  "    console.log('RX Appointment ID:', json.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": {{patientId}},\n  \"doctorId\": {{doctorId}},\n  \"receptionistId\": 1,\n  \"appointmentDate\": \"2025-06-30T00:00:00\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"09:30:00\",\n  \"notes\": \"For prescription testing\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            },
+            "description": "Helper — Book a fresh appointment for prescription testing."
+          }
+        },
+        {
+          "name": "Setup — Confirm That Appointment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/{{rxAppointmentId}}/confirm",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "{{rxAppointmentId}}", "confirm"]
+            },
+            "description": "Helper — Confirm the appointment before creating prescription."
+          }
+        },
+        {
+          "name": "UC-14 — Create Prescription (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Prescription created', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.id).to.be.above(0);",
+                  "    pm.expect(json.medication).to.include('Amoxicillin');",
+                  "    pm.collectionVariables.set('prescriptionId', json.id);",
+                  "    console.log('Prescription ID saved:', json.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentId\": {{rxAppointmentId}},\n  \"medication\": \"Amoxicillin 500mg — 3 times daily for 7 days\",\n  \"notes\": \"Take after meals. Avoid dairy products.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/prescriptions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prescriptions"]
+            },
+            "description": "UC-14 Main Flow — Create prescription for a Confirmed appointment. Also marks appointment as Completed."
+          }
+        },
+        {
+          "name": "UC-14 — Duplicate Prescription (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Already Exists', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions existing prescription', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('already exists');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentId\": {{rxAppointmentId}},\n  \"medication\": \"Ibuprofen 400mg\",\n  \"notes\": \"Duplicate attempt\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/prescriptions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prescriptions"]
+            },
+            "description": "UC-14 ALT-1 — Second prescription for same appointment should fail (BR-01)."
+          }
+        },
+        {
+          "name": "UC-14 — Appointment Not Confirmed",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Not Confirmed', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions Confirmed', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('Confirmed');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentId\": {{appointmentId}},\n  \"medication\": \"Paracetamol 500mg\",\n  \"notes\": \"This appointment is Cancelled/Scheduled\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/prescriptions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prescriptions"]
+            },
+            "description": "UC-14 — Prescription requires Confirmed appointment (use the cancelled appointmentId)."
+          }
+        },
+        {
+          "name": "UC-15 — View Prescription by Appointment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Prescription returned', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.medication).to.include('Amoxicillin');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/prescriptions/appointment/{{rxAppointmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prescriptions", "appointment", "{{rxAppointmentId}}"]
+            },
+            "description": "UC-15 Main Flow — View prescription linked to a specific appointment."
+          }
+        },
+        {
+          "name": "UC-15 — No Prescription Found (ALT-1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 500 - Not Found', () => pm.response.to.have.status(500));",
+                  "pm.test('Error mentions no prescription', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.message).to.include('No prescription');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/prescriptions/appointment/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prescriptions", "appointment", "99999"]
+            },
+            "description": "UC-15 ALT-1 — No prescription exists for this appointment."
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Reports",
+      "description": "UC-17 to UC-19 — Clinic Manager reports",
+      "item": [
+        {
+          "name": "UC-17 — Dashboard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Dashboard has all KPI fields', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.property('totalPatients');",
+                  "    pm.expect(json).to.have.property('totalDoctors');",
+                  "    pm.expect(json).to.have.property('totalAppointments');",
+                  "    pm.expect(json).to.have.property('completedCount');",
+                  "    pm.expect(json).to.have.property('cancelledCount');",
+                  "    pm.expect(json.totalPatients).to.be.at.least(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "dashboard"]
+            },
+            "description": "UC-17 Main Flow — Get clinic dashboard with all KPIs."
+          }
+        },
+        {
+          "name": "UC-18 — Patient Report (All Time)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Patient report fields', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.property('totalPatients');",
+                  "    pm.expect(json).to.have.property('newPatients');",
+                  "    pm.expect(json).to.have.property('averageAge');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "patients"]
+            },
+            "description": "UC-18 — Patient report with no date filter (all time)."
+          }
+        },
+        {
+          "name": "UC-18 — Patient Report (Date Range)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/patients?from=2025-01-01&to=2025-12-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "patients"],
+              "query": [
+                { "key": "from", "value": "2025-01-01" },
+                { "key": "to", "value": "2025-12-31" }
+              ]
+            },
+            "description": "UC-18 — Patient report for year 2025."
+          }
+        },
+        {
+          "name": "UC-19 — Appointment Report (All Time)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));",
+                  "pm.test('Appointment report fields', () => {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.property('totalAppointments');",
+                  "    pm.expect(json).to.have.property('completedAppointments');",
+                  "    pm.expect(json).to.have.property('cancelledAppointments');",
+                  "    pm.expect(json).to.have.property('appointmentsPerDoctor');",
+                  "    pm.expect(json.appointmentsPerDoctor).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "appointments"]
+            },
+            "description": "UC-19 — Appointment report with no date filter."
+          }
+        },
+        {
+          "name": "UC-19 — Appointment Report (Date Range)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 OK', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/appointments?from=2025-06-01&to=2025-06-30",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "appointments"],
+              "query": [
+                { "key": "from", "value": "2025-06-01" },
+                { "key": "to", "value": "2025-06-30" }
+              ]
+            },
+            "description": "UC-19 — Appointment report for June 2025."
+          }
+        },
+        {
+          "name": "Reports — Unauthorized (Not Manager)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401 or 403 - Unauthorized', () => {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([401, 403]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "dashboard"]
+            },
+            "description": "Security — Access reports without token should be denied."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\services\\patientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\services\\patientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.models\\entities\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|solutionrelative:cms.models\\entities\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\controllers\\doctorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\controllers\\doctorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B79B3017-0DAF-4E36-8029-6FE83B65BD0E}|CMS.DAL\\CMS.DAL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.dal\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B79B3017-0DAF-4E36-8029-6FE83B65BD0E}|CMS.DAL\\CMS.DAL.csproj|solutionrelative:cms.dal\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B79B3017-0DAF-4E36-8029-6FE83B65BD0E}|CMS.DAL\\CMS.DAL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.dal\\clinicdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B79B3017-0DAF-4E36-8029-6FE83B65BD0E}|CMS.DAL\\CMS.DAL.csproj|solutionrelative:cms.dal\\clinicdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C0E6F36-9905-45F6-B499-DB21A1AB5E83}|CMS.Tests\\CMS.Tests.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.tests\\appointmentservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C0E6F36-9905-45F6-B499-DB21A1AB5E83}|CMS.Tests\\CMS.Tests.csproj|solutionrelative:cms.tests\\appointmentservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\services\\doctorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\services\\doctorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\interfaces\\ipatientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\interfaces\\ipatientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.models\\entities\\clinicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|solutionrelative:cms.models\\entities\\clinicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\controllers\\patientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\controllers\\patientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\controllers\\appointmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\controllers\\appointmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\middlewares\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\middlewares\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.models\\entities\\doctoravailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|solutionrelative:cms.models\\entities\\doctoravailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.models\\entities\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|solutionrelative:cms.models\\entities\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\interfaces\\idoctortservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\interfaces\\idoctortservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\controllers\\prescriptionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\controllers\\prescriptionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.api\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559B2AA6-AE61-4B48-B81B-1EDA0A5920B8}|CMS.API\\CMS.API.csproj|solutionrelative:cms.api\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.models\\entities\\receptionist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|solutionrelative:cms.models\\entities\\receptionist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.models\\entities\\prescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46DD418D-C756-4E68-84D8-73F8CC398ABF}|CMS.Models\\CMS.Models.csproj|solutionrelative:cms.models\\entities\\prescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\services\\prescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\services\\prescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\interfaces\\ireportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\interfaces\\ireportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|c:\\users\\omar ite\\desktop\\project c#\\cms\\cms.bll\\interfaces\\iprescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0F259B0-8EF9-42B4-BC09-FF8FC6A9DEAC}|CMS.BLL\\CMS.BLL.csproj|solutionrelative:cms.bll\\interfaces\\iprescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF5CD8E-D188-4832-9B30-8DEE8025F22E}|postman{AFF5CD8E-D188-4832-9B30-8DEE8025F22E}|C:\\Users\\OMAR ITE\\Downloads\\CMS_Postman_Collection.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\SeedData.cs",
+              "RelativeDocumentMoniker": "CMS.DAL\\SeedData.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\SeedData.cs",
+              "RelativeToolTip": "CMS.DAL\\SeedData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T08:39:40.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DoctorsController.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\DoctorsController.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Controllers\\DoctorsController.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\DoctorsController.cs",
+              "RelativeToolTip": "CMS.API\\Controllers\\DoctorsController.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAmwE8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T09:37:33.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Appointment.cs",
+              "RelativeDocumentMoniker": "CMS.Models\\Entities\\Appointment.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Appointment.cs",
+              "RelativeToolTip": "CMS.Models\\Entities\\Appointment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-04T10:27:11.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppointmentService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\AppointmentService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Services\\AppointmentService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\AppointmentService.cs",
+              "RelativeToolTip": "CMS.BLL\\Services\\AppointmentService.cs",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAUwOYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T11:45:43.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PatientService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\PatientService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Services\\PatientService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\PatientService.cs",
+              "RelativeToolTip": "CMS.BLL\\Services\\PatientService.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAuwGgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T10:01:26.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClinicDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\ClinicDbContext.cs",
+              "RelativeDocumentMoniker": "CMS.DAL\\ClinicDbContext.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\ClinicDbContext.cs",
+              "RelativeToolTip": "CMS.DAL\\ClinicDbContext.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwL0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T09:38:13.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Program.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Program.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Program.cs",
+              "RelativeToolTip": "CMS.API\\Program.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAmwHYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T10:50:28.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ExceptionMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Middlewares\\ExceptionMiddleware.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Middlewares\\ExceptionMiddleware.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Middlewares\\ExceptionMiddleware.cs",
+              "RelativeToolTip": "CMS.API\\Middlewares\\ExceptionMiddleware.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwCIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-04T09:00:03.115Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IAppointmentService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IAppointmentService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Interfaces\\IAppointmentService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IAppointmentService.cs",
+              "RelativeToolTip": "CMS.BLL\\Interfaces\\IAppointmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T11:44:44.977Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppointmentServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Tests\\AppointmentServiceTests.cs",
+              "RelativeDocumentMoniker": "CMS.Tests\\AppointmentServiceTests.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Tests\\AppointmentServiceTests.cs",
+              "RelativeToolTip": "CMS.Tests\\AppointmentServiceTests.cs",
+              "ViewState": "AgIAAM8BAAAAAAAAAAAUwL4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T07:39:21.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ClinicManager.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\ClinicManager.cs",
+              "RelativeDocumentMoniker": "CMS.Models\\Entities\\ClinicManager.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\ClinicManager.cs",
+              "RelativeToolTip": "CMS.Models\\Entities\\ClinicManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T10:22:56.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IPatientService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IPatientService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Interfaces\\IPatientService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IPatientService.cs",
+              "RelativeToolTip": "CMS.BLL\\Interfaces\\IPatientService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T12:43:54.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DoctorService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\DoctorService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Services\\DoctorService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\DoctorService.cs",
+              "RelativeToolTip": "CMS.BLL\\Services\\DoctorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T10:10:07.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PatientsController.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\PatientsController.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Controllers\\PatientsController.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\PatientsController.cs",
+              "RelativeToolTip": "CMS.API\\Controllers\\PatientsController.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowC0AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T07:09:59.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\AuthService.cs",
+              "RelativeToolTip": "CMS.BLL\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T08:07:20.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AppointmentsController.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\AppointmentsController.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Controllers\\AppointmentsController.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\AppointmentsController.cs",
+              "RelativeToolTip": "CMS.API\\Controllers\\AppointmentsController.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAiwDcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T11:47:59.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "CMS.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwBoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T11:56:19.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IDoctortService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IDoctortService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Interfaces\\IDoctortService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IDoctortService.cs",
+              "RelativeToolTip": "CMS.BLL\\Interfaces\\IDoctortService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAADwvxYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T07:21:28.13Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DoctorAvailability.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\DoctorAvailability.cs",
+              "RelativeDocumentMoniker": "CMS.Models\\Entities\\DoctorAvailability.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\DoctorAvailability.cs",
+              "RelativeToolTip": "CMS.Models\\Entities\\DoctorAvailability.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T10:41:47.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Doctor.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Doctor.cs",
+              "RelativeDocumentMoniker": "CMS.Models\\Entities\\Doctor.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Doctor.cs",
+              "RelativeToolTip": "CMS.Models\\Entities\\Doctor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T10:23:38.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Controllers\\ReportsController.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "CMS.API\\Controllers\\ReportsController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAqwC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T07:06:11.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PrescriptionsController.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\PrescriptionsController.cs",
+              "RelativeDocumentMoniker": "CMS.API\\Controllers\\PrescriptionsController.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\Controllers\\PrescriptionsController.cs",
+              "RelativeToolTip": "CMS.API\\Controllers\\PrescriptionsController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T06:28:05.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Receptionist.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Receptionist.cs",
+              "RelativeDocumentMoniker": "CMS.Models\\Entities\\Receptionist.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Receptionist.cs",
+              "RelativeToolTip": "CMS.Models\\Entities\\Receptionist.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T10:23:52.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Prescription.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Prescription.cs",
+              "RelativeDocumentMoniker": "CMS.Models\\Entities\\Prescription.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\Entities\\Prescription.cs",
+              "RelativeToolTip": "CMS.Models\\Entities\\Prescription.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-04T10:51:12.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ReportService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\ReportService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Services\\ReportService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\ReportService.cs",
+              "RelativeToolTip": "CMS.BLL\\Services\\ReportService.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAmwHYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T07:02:08.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "CMS_Postman_Collection.json",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Downloads\\CMS_Postman_Collection.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\CMS_Postman_Collection.json",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Downloads\\CMS_Postman_Collection.json",
+              "RelativeToolTip": "..\\..\\..\\Downloads\\CMS_Postman_Collection.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-04T08:48:05.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PrescriptionService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\PrescriptionService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Services\\PrescriptionService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Services\\PrescriptionService.cs",
+              "RelativeToolTip": "CMS.BLL\\Services\\PrescriptionService.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAiwE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T06:26:48.279Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IReportService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IReportService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Interfaces\\IReportService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IReportService.cs",
+              "RelativeToolTip": "CMS.BLL\\Interfaces\\IReportService.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAA8wC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T06:57:51.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "IPrescriptionService.cs",
+              "DocumentMoniker": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IPrescriptionService.cs",
+              "RelativeDocumentMoniker": "CMS.BLL\\Interfaces\\IPrescriptionService.cs",
+              "ToolTip": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\Interfaces\\IPrescriptionService.cs",
+              "RelativeToolTip": "CMS.BLL\\Interfaces\\IPrescriptionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T06:26:14.855Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

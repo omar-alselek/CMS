@@ -1,0 +1,429 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Tests\\CMS.Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\CMS.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\CMS.API.csproj",
+        "projectName": "CMS.API",
+        "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\CMS.API.csproj",
+        "packagesPath": "C:\\Users\\OMAR ITE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\OMAR ITE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\CMS.BLL.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\CMS.BLL.csproj"
+              },
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.27, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\CMS.BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\CMS.BLL.csproj",
+        "projectName": "CMS.BLL",
+        "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\CMS.BLL.csproj",
+        "packagesPath": "C:\\Users\\OMAR ITE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\OMAR ITE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\CMS.DAL.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\CMS.DAL.csproj"
+              },
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.18.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\CMS.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\CMS.DAL.csproj",
+        "projectName": "CMS.DAL",
+        "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\CMS.DAL.csproj",
+        "packagesPath": "C:\\Users\\OMAR ITE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\OMAR ITE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj",
+        "projectName": "CMS.Models",
+        "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj",
+        "packagesPath": "C:\\Users\\OMAR ITE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\OMAR ITE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Tests\\CMS.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Tests\\CMS.Tests.csproj",
+        "projectName": "CMS.Tests",
+        "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Tests\\CMS.Tests.csproj",
+        "packagesPath": "C:\\Users\\OMAR ITE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\OMAR ITE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\CMS.API.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.API\\CMS.API.csproj"
+              },
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\CMS.BLL.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.BLL\\CMS.BLL.csproj"
+              },
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\CMS.DAL.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.DAL\\CMS.DAL.csproj"
+              },
+              "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj": {
+                "projectPath": "C:\\Users\\OMAR ITE\\Desktop\\project c#\\CMS\\CMS.Models\\CMS.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.12.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

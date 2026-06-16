@@ -1,0 +1,17 @@
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\bin\Release\net8.0\CMS.BLL.deps.json
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\bin\Release\net8.0\CMS.BLL.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\bin\Release\net8.0\CMS.BLL.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\bin\Release\net8.0\CMS.DAL.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\bin\Release\net8.0\CMS.Models.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\bin\Release\net8.0\CMS.DAL.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\bin\Release\net8.0\CMS.Models.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.csproj.AssemblyReference.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.AssemblyInfoInputs.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.AssemblyInfo.cs
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.csproj.CoreCompileInputs.cache
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.csproj.Up2Date
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\refint\CMS.BLL.dll
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\CMS.BLL.pdb
+C:\Users\OMAR ITE\Desktop\project c#\CMS\CMS.BLL\obj\Release\net8.0\ref\CMS.BLL.dll
